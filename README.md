@@ -11,4 +11,3 @@ Installation
 Run
     npm install
 	node index.js AgentName
-

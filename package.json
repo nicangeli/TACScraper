@@ -1,0 +1,14 @@
+{
+  "name": "COMP6006",
+  "version": "0.0.0",
+  "description": "Tac scraper, pulls data from tac.ecs.soton.ac.uk:8080",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Nicholas Angeli (na8g09@ecs.soton.ac.uk)",
+  "license": "BSD",
+  "dependencies": {
+  }
+}

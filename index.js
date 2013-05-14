@@ -14,7 +14,8 @@ request(url, function(err, res, html) {
 		transactionDay = [],
 		transactionBuyer = [],
 		transactionQuantity = [],
-		transactionPrice = [];
+		transactionPrice = [],
+		transactions = [];
 
 	var parsedHtml = $.load(html);
 	parsedHtml('tr :nth-child(2)').each(function(i, row) {
@@ -45,7 +46,18 @@ request(url, function(err, res, html) {
 	// got all of the details from the html page url now into arrays for name, day etc
 
 	// now lets just get the hotels as that's all i care about
-	transactionNames.each(function(index, element) {
-		console.log(element);
-	})
+	transactionNames.forEach(function(element, index) {
+		if(element === "TampaTowersHotel" || element === "ShorelineShantyHotel") {
+			// these are the ones we want, hotels. lets save them. 
+			var transaction = new Object();
+			transaction.hotel_name = element;
+			transaction.day = transactionDay[index];
+			transaction.buyer = transactionBuyer[index];
+			transaction.quantity = transactionQuantity[index];
+			transaction.price = transactionPrice[index];
+			transactions.push(transaction);
+		} 
+	});
+
+	// work out our average hotel buying price for each day
 });

@@ -53,11 +53,18 @@ request(url, function(err, res, html) {
 			transaction.hotel_name = element;
 			transaction.day = transactionDay[index];
 			transaction.buyer = transactionBuyer[index];
-			transaction.quantity = transactionQuantity[index];
-			transaction.price = transactionPrice[index];
+			transaction.quantity = parseFloat(transactionQuantity[index]);
+			transaction.price = parseFloat(transactionPrice[index]);
 			transactions.push(transaction);
 		} 
 	});
 
 	// work out our average hotel buying price for each day
+	var total = 0; 
+	var quantity = 0; 
+	transactions.forEach(function(transaction, i) {
+		quantity += transaction.quantity;
+		total += transaction.quantity * transaction.price;
+	});
+	console.log('Average Hotel Price: ' + total/quantity);
 });

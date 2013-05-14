@@ -59,7 +59,7 @@ request(url, function(err, res, html) {
 		} 
 	});
 
-	// work out our average hotel buying price for each day
+	// work out the average hotel buying price overall
 	var total = 0; 
 	var quantity = 0; 
 	transactions.forEach(function(transaction, i) {
@@ -67,4 +67,16 @@ request(url, function(err, res, html) {
 		total += transaction.quantity * transaction.price;
 	});
 	console.log('Average Hotel Price: ' + total/quantity);
+
+	// work out our average sellingprice only
+	var total = 0; 
+	var quantity = 0; 
+	transactions.forEach(function(transaction, i) {
+		//process.argv[2] will be the name of the agent passed in on the cli
+		if(transaction.buyer == process.argv[2]) {
+			quantity += transaction.quantity;
+			total += transaction.quantity * transaction.price;
+		}
+	})
+	console.log('Our Average Hotel Price: ' + total/quantity);
 });
